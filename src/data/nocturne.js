@@ -1,7 +1,7 @@
 // Hand-authored Nocturne content. Generated Kanto data stays untouched.
 (function (G) {
   'use strict';
-  G.NOCTURNE = { version: 1, startMap: 'AnemoiaHome', worldRoot: 'AnemoiaTown' };
+  G.NOCTURNE = { version: 2, startMap: 'AnemoiaHome', worldRoot: 'AnemoiaTown' };
   const labels = ['grass','path','tree2','flowers','tall_grass','water','roof_house','wall','window','door','sign','floor','wall','bookshelf','table','bed','mat','floor_tile','counter','pc','cut_tree'];
   const walk = new Set(['grass','path','flowers','tall_grass','door','floor','floor_tile','mat']);
   // Separate semantic tilesets share existing painters, with explicit collision.
@@ -31,13 +31,13 @@
     const suf=realm==='waking'?'':'_Nocturne';
     const t=map('AnemoiaTown'+suf,40,30,null,realm); t.display='ANEMOIA / '+realm.toUpperCase();
     rect(t,3,12,34,3,'path'); rect(t,19,2,3,26,'path');
-    house(t,5,7,7);house(t,28,7,30);house(t,17,20,19);house(t,5,20,7);house(t,28,20,30);
+    house(t,5,7,7);house(t,28,7,30);house(t,23,18,25);house(t,5,20,7);house(t,28,20,30);
     exit(t,7,10,'AnemoiaHome'+suf,6,8);exit(t,30,10,'RivalHome'+suf,6,8);
-    exit(t,19,23,'AnemoiaLab'+suf,6,10);exit(t,7,23,'AnemoiaCenter'+suf,6,8);exit(t,30,23,'AnemoiaMart'+suf,6,8);
+    rect(t,22,22,4,1,'path'); exit(t,25,21,'AnemoiaLab'+suf,6,10);exit(t,7,23,'AnemoiaCenter'+suf,6,8);exit(t,30,23,'AnemoiaMart'+suf,6,8);
     exit(t,20,2,'NorthForest'+suf,20,31);exit(t,37,13,'EastPath'+suf,2,10);
-    sign(t,'TOWN_SIGN',18,12);sign(t,'LAB_SIGN',17,24); sign(t,'CENTER_SIGN',5,24);sign(t,'MART_SIGN',28,24);
+    sign(t,'TOWN_SIGN',18,12);sign(t,'LAB_SIGN',27,22); sign(t,'CENTER_SIGN',5,24);sign(t,'MART_SIGN',28,24);
     rect(t,3,3,5,2,'flowers');rect(t,30,15,5,3,'water');
-    sign(t,'GLASSES',12,17,'flowers');sign(t,'LAB_KEY',33,5,'flowers');
+
     if(realm==='waking'){ object(t,'NEIGHBOR',15,13,'girl');object(t,'RIVAL_MOTHER',31,12,'mom'); }
     for(const kind of ['AnemoiaHome','RivalHome','AnemoiaCenter','AnemoiaMart']) {
       const d=map(kind+suf,14,11,'house',realm);d.display=kind.replace(/([a-z])([A-Z])/g,'$1 $2').toUpperCase();
@@ -49,23 +49,23 @@
       if(kind==='AnemoiaMart')sign(d,'SHOP_TERMINAL',6,2,'counter');
     }
     const lab=map('AnemoiaLab'+suf,14,13,'lab',realm);lab.display='OAK\'S LAB / '+realm.toUpperCase();
-    exit(lab,6,11,'AnemoiaTown'+suf,19,24);rect(lab,2,2,3,1,'bookshelf');rect(lab,9,2,3,1,'bookshelf');rect(lab,6,2,2,1,'table');
-    sign(lab,'LAB_NOTES',3,2,'bookshelf');sign(lab,'LAB_HINGE',10,5,'pc');
+    exit(lab,6,11,'AnemoiaTown'+suf,25,22);rect(lab,2,2,3,1,'bookshelf');rect(lab,9,2,3,1,'bookshelf');rect(lab,6,2,2,1,'table');
+    sign(lab,'LAB_NOTES',3,2,'bookshelf');sign(lab,'LAB_RECORD',10,5,'pc');
     if(realm==='waking'){object(lab,'OAK',6,4,'oak');object(lab,'RIVAL',8,6,'blue');}
     const f=map('NorthForest'+suf,40,34,null,realm);f.display='NORTH FOREST / '+realm.toUpperCase();
     rect(f,3,3,34,27,'tree2');
     // A winding walk with two quiet clearings; no wild battles before a starter.
     rect(f,19,23,3,9,'path');rect(f,10,23,12,3,'path');rect(f,10,14,3,12,'path');rect(f,10,14,20,3,'path');rect(f,27,5,3,12,'path');rect(f,16,5,14,3,'path');
     rect(f,7,20,8,5,'grass');rect(f,23,11,10,7,'grass');rect(f,14,3,9,7,'grass');
-    exit(f,20,32,'AnemoiaTown'+suf,20,3);sign(f,'FOREST_MEMORY',8,22);sign(f,'FOREST_WARNING',24,13);sign(f,'STUMP',17,5,'cut_tree');object(f,'VEILOOK',20,5,'monster');
+    exit(f,20,32,'AnemoiaTown'+suf,20,3);sign(f,'FOREST_MEMORY',8,22);sign(f,'FOREST_WARNING',24,13);sign(f,'STUMP',17,5,'cut_tree');object(f,'VEILOOK',20,5,'monster');sign(f,'LAB_KEY',24,15,'flowers');sign(f,'GLASSES',25,15,'flowers');sign(f,'FADED_BALLS',22,7,'flowers');
     const e=map('EastPath'+suf,34,22,null,realm);e.display='EAST PATH / '+realm.toUpperCase();rect(e,1,9,31,3,'path');rect(e,5,3,8,5,'tall_grass');rect(e,17,14,9,5,'tall_grass');
     exit(e,1,10,'AnemoiaTown'+suf,36,13);sign(e,'EAST_BOUNDARY',31,10);object(e,'GLIM',9,10,'monster');sign(e,'EAST_MEMORY',21,13);
     if(realm==='nocturne')G.DATA.wild[e.cnst]={grass:{rate:22,mons:Array(10).fill([4,'GLIM'])},water:{rate:0,mons:[]}};
   }
   const roster=[
-    ['MIRTH','GRASS',[52,48,55,42,62],'A smile with no reason to smile. It curls around warm memories.'],
-    ['MOURN','WATER',[58,44,58,38,61],'Its tears rise instead of falling. It listens at empty doorways.'],
-    ['DREAD','FIRE',[46,60,44,60,49],'A small, restless ember. It flinches before anything moves.'],
+    ['BULBASAUR_NOCTURNE','GRASS',[52,48,55,42,62],'A smile with no reason to smile. It curls around warm memories.'],
+    ['SQUIRTLE_NOCTURNE','WATER',[58,44,58,38,61],'Its tears rise instead of falling. It listens at empty doorways.'],
+    ['CHARMANDER_NOCTURNE','FIRE',[46,60,44,60,49],'A small, restless ember. It flinches before anything moves.'],
     ['GLIM','NORMAL',[38,35,38,48,42],'A little light that remembers being followed. It hates being alone.'],
     ['VEILOOK','GHOST',[65,45,60,85,80],'It watches the space beside you. Nobody remembers its arrival.'],
     ['NOCTEYE','PSYCHIC',[90,85,90,100,155],'Its pale gaze rests on places that no longer exist.']
@@ -84,4 +84,21 @@
       {t:'e',x:31,y:52,rx:5,ry:3,c:'dark',g:'mark',z:2}
     ]});
   });
+  const expressions = {
+    BULBASAUR_NOCTURNE: ['BULBASAUR', {skin:'#929b88',spot:'#59695a',bulb:'#7c8672',bulbD:'#535c54',ear:'#929b88'}],
+    CHARMANDER_NOCTURNE: ['CHARMANDER', {skin:'#a3939f',belly:'#c5bdc9',flame:'#a6c3d4',flameR:'#667b99'}],
+    SQUIRTLE_NOCTURNE: ['SQUIRTLE', {skin:'#94a7b2',shell:'#687364',plas:'#b4aea0',rim:'#969b87'}]
+  };
+  for (const [sp,[base,pal]] of Object.entries(expressions)) {
+    const species=G.DATA.species[sp]; species.name=base; species.expression=true;
+    species.cat=base==='BULBASAUR'?'OVERGROWN':base==='CHARMANDER'?'COLD FLAME':'WORN SHELL';
+    const original=G.MONDEFS[base];
+    const parts=original.parts.map(p=>p.t==='eye'?{t:'e',x:p.x,y:p.y,rx:p.s*.65,ry:p.s,c:'pale',g:'eye'+p.x,z:8}:Object.assign({},p));
+    if(base==='BULBASAUR')parts.push({t:'e',x:39,y:12,rx:8,ry:3,c:'bulbD',g:'fungus',z:5},{t:'e',x:49,y:19,rx:6,ry:2,c:'bulb',g:'fungus2',z:5});
+    if(base==='SQUIRTLE')parts.push({t:'stripe',pts:[38,31,35,37,40,42,37,48],w:1,c:'rim',on:'shell'});
+    G.defMon(sp,{pal:Object.assign({},original.pal,pal,{pale:'#e9e7ed'}),parts});
+  }
+  G.nocturneLegacyStarters={MIRTH:'BULBASAUR_NOCTURNE',MOURN:'SQUIRTLE_NOCTURNE',DREAD:'CHARMANDER_NOCTURNE'};
+  for(const [old,sp]of Object.entries(G.nocturneLegacyStarters))G.DATA.species[old]=Object.assign({},G.DATA.species[sp],{id:old});
+
 })(window.G);

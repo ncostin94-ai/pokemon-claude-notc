@@ -1,33 +1,42 @@
-# Pokémon Nocturne — playable opening
+# Pokémon Nocturne — canon opening pass
 
-This branch starts a separate Nocturne campaign while preserving the original engine and Kanto source data. Open `index.html` or serve the repository with `python3 -m http.server 8000`. On a phone, use the existing D-pad and A/B controls. START opens the save/menu; SELECT shows the current objective.
+Run `python3 -m http.server 8000` in this folder and open `http://localhost:8000`, or open `index.html` directly. Arrow keys/WASD move; Z/Space or A interacts; X/Esc or B cancels; Enter/START opens the save menu; Shift/C or SELECT shows the next objective.
 
-## Opening route
+## Playable story
 
-1. Leave home; enter Oak's lab south of Anemoia's crossroads.
-2. Approach Oak and the rival. The rival's fatal accident is presented through a fade and dialogue, without graphic imagery.
-3. Return home and speak to Mother.
-4. Follow the north road into North Forest; speak to Veilook in the far clearing.
-5. Walk south into unattended Nocturne Anemoia. Find Oak's key in the northeast flowers and his cracked glasses southwest of the crossroads.
-6. Enter the lab and examine its terminal. The lab folds back into the waking world.
-7. Return to the forest stump. Choose Mirth (smile/Grass), Mourn (tear/Water), or Dread (fear/Fire).
-8. Return home: Mother has disappeared. Follow Veilook back through the forest.
-9. Collect the field kit and follow the now-open east road. Weaken Glim and use a Poké Ball. Failed encounters can be repeated, balls replenished, and the party healed.
-10. Return to the unattended Center and use its terminal to finish and save the opening. Continue exploring, training, shopping and collecting the six optional memory echoes.
+1. Leave home and approach the rival in Oak's lab. The lab stands southeast of the crossroads, beside the north/south road, with a short path to its door.
+2. The rival trips and dies before either character chooses a starter. The scene remains restrained and non-graphic. Oak sends you home.
+3. Talk to Mother. Oak never arrives and is subsequently absent from the lab.
+4. Follow Veilook through North Forest into Nocturne.
+5. At the mossy hollow stump, answer one expression: overgrown bloom (fungal Bulbasaur), cold flame (dim, cool-flame Charmander), or worn shell (moss-cracked Squirtle). These use recognizable original silhouettes and pale blank eyes.
+6. Find Oak's key in the forest clearing. His cracked glasses are nearby, but optional; they are no longer a required portal mechanism.
+7. Enter the lab from Nocturne. Its interior is warm and intact; leaving through the ordinary door returns you to waking Anemoia. Entering from waking Anemoia subsequently reveals the abandoned Nocturne interior, and its door returns you to Nocturne. The doorway stays reversible. No terminal activation is required.
+8. Return home with your companion and find Mother gone and the house empty.
+9. Return to Nocturne through the lab or Veilook. Inspect the worn satchel beside the stump for five faded Poké Balls and two sealed healing vials. The east path opens.
+10. Catch Glim on East Path. Failed attempts can be repeated. Explore the unattended town, recover at the Center, use its PC, and take Mart supplies with or without voluntarily leaving payment.
 
-The opening is designed as a roughly 20–30 minute exploration slice, including the optional echoes and battles. That timing is an estimate, not a measured human playtest. The critical path can be shorter for a player who knows the route.
+No ending, chapter-completion screen, badges or late-story revelation is added. The eastern road remains obscured by mist. Optional environmental writing is no longer a numbered collectible quest.
 
-## Scope and limitations
+## Story continuity (developer spoilers)
 
-- Sixteen authored maps: waking and Nocturne versions of town, home, rival's home, lab, Center, Mart, forest and East Path.
-- Three provisional starter names/designs, plus Glim, Veilook and Nocteye data and procedural sprites. These are first-pass silhouettes and balancing, not final concept art. Nocteye is registered for later chapters and does not appear in the opening.
-- Gen-I battle mechanics remain intact. These mechanics use a combined Special stat, rather than modern separate Special Attack/Special Defense stats.
-- Local browser saves use a Nocturne-specific slot; Red saves are preserved. Cloud accounts, upstream marketing bar and gameplay analytics are disabled for this standalone slice.
-- No Kanto routes are connected to the opening. Path of Grief and Desiderium are not part of this slice.
-- No hosted release is created by this branch. `node tools/build_dist.js` creates a static `dist/` directory for hosting.
+The chosen expression is the dead rival. The save records `companionOrigin` with the rival's name and `revealed: false`; nothing in the player-facing opening explains that truth. Its eventual reveal, Veilook's role, Path of Grief, Desiderium and any ending remain unimplemented.
 
-## Validation
+The first prototype's Mirth/Mourn/Dread species are retained solely as load-compatible aliases. Loading converts party/boxed creatures and starter identity to the corresponding canonical expression. Old local saves remain readable, but starting a new game is recommended for experiencing the revised story order. The choice of stump-before-lab follows one of the established opening drafts.
 
-Run `node tools/nocturne-test.js`. It walks the opening through actual movement and interaction dispatch, checks forest/east/lab gates, reloads saves, chooses a starter, defeats then retries Glim through its story interaction, completes a real Poké Ball capture through the battle UI, finishes at the Center, and renders every authored map. Also run `node tools/build_dist.js` and `git diff --check`.
+## Implementation and validation
 
-Original engine credits and license/legal information remain in README.md.
+Sixteen paired opening maps remain layered over the original engine and Kanto data. Nocturne uses its own local browser save slot. Upstream marketing, cloud accounts and gameplay analytics remain disabled. Creature designs and balance are still procedural first passes; Nocteye is registered for later use but is not encountered in this opening. The Gen-I combined Special stat remains.
+
+Run:
+
+```sh
+node tools/nocturne-title-test.js
+node tools/nocturne-test.js
+node tools/nocturne-canon-test.js
+node tools/build_dist.js
+git diff --check
+```
+
+Tests cover New Game with/without an existing save, the real opening route, forest/east/lab gates, optional glasses, reversible world-inverting doorways, all three expressions, hidden companion identity, failed encounter retry and real Poké Ball capture, voluntary-payment choices, legacy saves, healing and all map renders. Build output is static `dist/`; this branch does not itself create a hosted release.
+
+Original engine credits and legal information remain in README.md.
