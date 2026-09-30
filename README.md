@@ -1,3 +1,13 @@
+# Pokémon Nocturne — playable opening
+
+The Nocturne campaign begins in Anemoia and crosses into its unattended shadow world. See [NOCTURNE_FOUNDATION.md](NOCTURNE_FOUNDATION.md) for controls, the opening route, testing, and current limitations.
+
+Run `python3 -m http.server 8000` from this folder, then open `http://localhost:8000`. No install or build is required.
+
+The original engine documentation and credits follow.
+
+---
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/levy-street/pokemon-claude-red/media/screens/title.png" width="760" alt="Pokémon Claude Red title screen">
 </p>

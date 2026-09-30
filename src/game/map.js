@@ -49,6 +49,7 @@
       if (d.ts === 'overworld' || d.ts === 'plateau') this.borderLabels = this.borderLabels.map(l => (l === 'tall_grass' || l === 'grass' || l === 'path' || l === 'path_tufts' || l === 'tree') ? 'tree2' : l);
       this.outdoor = d.ts === 'overworld' || d.ts === 'plateau';
       this.interior = !['overworld', 'plateau', 'forest', 'ship_port'].includes(d.ts);
+      if (d.realm) { this.outdoor = !d.nocturneInterior; this.interior = !!d.nocturneInterior; }
       this.world = null; // {x,y} in cells for outdoor maps
       this.conns = d.conns;
       this.warps = d.warps; this.signs = d.signs; this.objs = d.objs; this.hidden = d.hidden;
@@ -117,7 +118,7 @@
   // Assign world coordinates to all outdoor maps by walking connections from Pallet Town
   function layoutWorld() {
     const seen = {};
-    const q = [['PalletTown', 0, 0]];
+    const q = [[(G.NOCTURNE && G.NOCTURNE.worldRoot) || 'PalletTown', 0, 0]];
     while (q.length) {
       const [n, x, y] = q.shift();
       if (seen[n]) continue;
