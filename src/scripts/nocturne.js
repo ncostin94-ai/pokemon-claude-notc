@@ -133,7 +133,7 @@
   G.ambientDark=function(s,ow,cx,cy){if(oldDark)oldDark(s,ow,cx,cy);if(!isNC(ow.map)||ow.map.d.realm!=='nocturne')return;const tint=G.gfx.hex('#69748d');for(let i=0;i<s.data.length;i++)s.data[i]=G.gfx.mix(s.data[i],tint,.28);for(let i=0;i<14;i++){const x=(i*71+ow.t*.15)%320,y=(i*43+Math.sin(ow.t/65+i)*7)%180;s.pset(x|0,y|0,G.gfx.hex('#c5bfd6'));}};
   const oldUpdate=G.Overworld.prototype.update;
   G.Overworld.prototype.update=function(f){oldUpdate.call(this,f);if(f&&isNC(this.map)&&!this.locks&&!G.scriptRunning&&G.input.pressed.select)G.spawnScript(S.say(G.nocturneObjective()),'objective');};
-  G.newGameIntro=function*(){G.state=G.newState();G.state.trainerId=Math.floor(Math.random()*65536);yield* G.say('POKéMON NOCTURNE\fA town remembers. A forest watches.\fWhat should we call you?');G.state.name=yield* G.namingScreen('YOUR NAME?','NORM',7);if(G.customizeLook)G.state.look=yield* G.customizeLook(G.state.look);G.startGame(G.state);yield* G.fadeIn(20);};
+  G.newGameIntro=function*(){G.state=G.newState();G.state.trainerId=Math.floor(Math.random()*65536);const backdrop=new NocturneTitle();G.engine.push(backdrop);yield* G.fadeIn(15);yield* G.say('POKéMON NOCTURNE\fA town remembers. A forest watches.\fWhat should we call you?');G.state.name=yield* G.namingScreen('YOUR NAME?','NORM',7);if(G.customizeLook)G.state.look=yield* G.customizeLook(G.state.look);yield* G.fadeOut(15);G.engine.pop(backdrop);G.startGame(G.state);yield* G.fadeIn(20);};
   class NocturneTitle{
     constructor(){this.opaque=true;this.t=0;this.done=false;}
     update(f){this.t++;if(f&&this.t>20&&(G.input.pressed.a||G.input.pressed.start))this.done=true;}
