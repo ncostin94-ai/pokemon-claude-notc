@@ -109,6 +109,7 @@
     const s = new Surface(W, Hh), up = new Surface(W, Hh);
     s.clear(P.black);
     const th = themeFor(map.name, map.tsFile);
+    if (map.d.realm === 'nocturne' && /Lab/.test(map.name)) Object.assign(th, { wall: '#898592', wall2: '#6e6b7b', trim: '#454453', tile: '#96939c', tile2: '#817e89', worn: true });
     const L = (x, y) => map.inside(x, y) ? map.label(x, y) : 'void';
     // infer floor under objects: nearest floor label among neighbours
     const floorAt = (x, y) => {

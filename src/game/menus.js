@@ -6,7 +6,7 @@
   const INK = hex('#3a3a4c');
 
   // ---------------- save / load ----------------
-  const SAVE_KEY = 'pkmn_pixel_red_save';
+  const SAVE_KEY = 'pkmn_nocturne_v1_save';
   // the PC's boxes as a list with no gaps: CHANGE BOX used to jump straight to, say, BOX 5, leaving empty slots that
   // crashed every new POKéMON registration and saved as nulls the game couldn't load back (repaired here on load too)
   G.fixBoxes = function (S) {
@@ -168,11 +168,11 @@
       const I = G.input, Pt = G.pointer;
       if (Pt && (Pt.moved || Pt.pressed) && Pt.inside) { // hover/tap an entry (click opens it as A); the wheel scrolls
         let hit = -1;
-        for (let i = 0; i < 8 && top + i < 151; i++) if (Pt.in(9, 9 + i * 20, 170, 20)) hit = top + i;
+        for (let i = 0; i < 8 && top + i < Object.keys(D.dexOrder).filter(k => +k > 0).length; i++) if (Pt.in(9, 9 + i * 20, 170, 20)) hit = top + i;
         if (hit >= 0) sel = hit; else if (Pt.pressed) Pt.consume();
       }
-      if (I.repeat('up')) sel = Math.max(0, sel - 1); if (I.repeat('down')) sel = Math.min(150, sel + 1);
-      if (I.repeat('left')) sel = Math.max(0, sel - 7); if (I.repeat('right')) sel = Math.min(150, sel + 7);
+      if (I.repeat('up')) sel = Math.max(0, sel - 1); if (I.repeat('down')) sel = Math.min(Object.keys(D.dexOrder).filter(k => +k > 0).length - 1, sel + 1);
+      if (I.repeat('left')) sel = Math.max(0, sel - 7); if (I.repeat('right')) sel = Math.min(Object.keys(D.dexOrder).filter(k => +k > 0).length - 1, sel + 7);
       if (sel < top) top = sel; if (sel > top + 7) top = sel - 7;
       if (I.pressed.b) this.done = true;
       if (I.pressed.a) { const sp = D.dexOrder[sel + 1]; if (S.dex.seen[sp]) { this.open = sp; } }
@@ -180,7 +180,7 @@
       G.menuBg(s, '#d84848', '#c83838', 0);
       G.ui.frame(s, 4, 4, 180, 172, 'red');
       for (let i = 0; i < 8; i++) {
-        const n = top + i + 1; if (n > 151) break;
+        const n = top + i + 1; if (n > Object.keys(D.dexOrder).filter(k => +k > 0).length) break;
         const sp = D.dexOrder[n], seen = S.dex.seen[sp], caught = S.dex.caught[sp], y = 12 + i * 20;
         if (n - 1 === sel) s.rect(9, y - 3, 170, 18, hex('#f8e0c0'));
         F.drawSmall(s, String(n).padStart(3, '0'), 24, y + 3, INK);

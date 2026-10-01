@@ -6,7 +6,7 @@
   'use strict';
   const { hex, mix } = G.gfx;
   const F = G.font;
-  const SAVE_KEY = 'pkmn_pixel_red_save', WTP_KEY = 'claudered_wtp';
+  const SAVE_KEY = 'pkmn_nocturne_v1_save', WTP_KEY = 'claudered_wtp';
   const b64u = s => G.b64u(s), unb64u = s => G.unb64u(s);
   const get = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
   const set = (k, v) => { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } };

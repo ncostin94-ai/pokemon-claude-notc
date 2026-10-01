@@ -383,8 +383,9 @@
     interact() {
       const p = this.player, [dx, dy] = DIRS[p.dir];
       let fx = p.x + dx, fy = p.y + dy;
-      let a = this.actorAt(fx, fy, p) || this.ghostAt(fx, fy) || (this.followerAt && this.followerAt(fx, fy));
       const m = this.map;
+      // A following companion must not hide an inspectable story object.
+      let a = this.actorAt(fx, fy, p) || this.ghostAt(fx, fy) || (this.followerAt && !m.signs.some(s => s.x === fx && s.y === fy) && this.followerAt(fx, fy));
       // talk over counters
       if (!a && m.ts.counters.includes(m.tile(fx, fy))) { a = this.actorAt(fx + dx, fy + dy, p); }
       const noTalk = G.glitch && G.glitch.blocked();
