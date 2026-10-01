@@ -10,16 +10,16 @@ Run `python3 -m http.server 8000` in this folder and open `http://localhost:8000
 4. Follow Veilook through North Forest into Nocturne.
 5. At the mossy hollow stump, answer one expression: overgrown bloom (fungal Bulbasaur), cold flame (dim, cool-flame Charmander), or worn shell (moss-cracked Squirtle). These use recognizable original silhouettes and pale blank eyes.
 6. Find Oak's key in the forest clearing. His cracked glasses are nearby, but optional; they are no longer a required portal mechanism.
-7. Enter the lab from Nocturne. Its interior is warm and intact; leaving through the ordinary door returns you to waking Anemoia. Entering from waking Anemoia subsequently reveals the abandoned Nocturne interior, and its door returns you to Nocturne. The doorway stays reversible. No terminal activation is required.
+7. Enter the lab from Nocturne. Its interior is warm and intact; leaving through the ordinary door returns you to waking Pallet Town. Entering from waking Pallet Town subsequently reveals the abandoned Nocturne interior, and its door returns you to Nocturne. The doorway stays reversible. No terminal activation is required.
 8. Return home with your companion and find Mother gone and the house empty.
 9. Return to Nocturne through the lab or Veilook. Inspect the worn satchel beside the stump for five faded Poké Balls and two sealed healing vials. The east path opens.
 10. Catch Glim on East Path. Failed attempts can be repeated. Explore the unattended town, recover at the Center, use its PC, and take Mart supplies with or without voluntarily leaving payment.
 
-No ending, chapter-completion screen, badges or late-story revelation is added. The eastern road remains obscured by mist. Optional environmental writing is no longer a numbered collectible quest.
+The opening has no ending or late-story revelation. Chapter two now continues east through the Path of Grief to Desiderium and Stillwood, with an optional unearned badge. See [the chapter guide](NOCTURNE_CHAPTER_TWO.md). Optional environmental writing is not a numbered collectible quest.
 
 ## Story continuity (developer spoilers)
 
-The chosen expression is the dead rival. The save records `companionOrigin` with the rival's name and `revealed: false`; nothing in the player-facing opening explains that truth. Its eventual reveal, Veilook's role, Path of Grief, Desiderium and any ending remain unimplemented.
+The chosen expression is the dead rival. The save records `companionOrigin` with the rival's name and `revealed: false`; nothing in the player-facing opening explains that truth. Its eventual reveal, the later explanation of Veilook's role, and any ending remain unimplemented. The Path of Grief and Desiderium are now playable in chapter two.
 
 The first prototype's Mirth/Mourn/Dread species are retained solely as load-compatible aliases. Loading converts party/boxed creatures and starter identity to the corresponding canonical expression. Old local saves remain readable, but starting a new game is recommended for experiencing the revised story order. The choice of stump-before-lab follows one of the established opening drafts.
 

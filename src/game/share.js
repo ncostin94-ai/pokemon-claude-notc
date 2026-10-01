@@ -33,7 +33,8 @@
     const badges = S.badges.length + (kind === 'leader' && data && !S.badges.includes(data.badge) ? 1 : 0);
     const a = { id, kind, data: data || {}, t: S.playTime || 0, date: Date.now(), badges, dex: Object.keys(S.dex.caught).length };
     S.achievements.push(a);
-    toasts.push(a);
+    // Nocturne reserves SELECT for its objective hint and keeps captures quiet.
+    if (S.campaign !== 'nocturne') toasts.push(a);
     return a;
   };
   G.achievementTitle = function (a) {

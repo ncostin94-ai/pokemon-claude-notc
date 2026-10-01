@@ -90,7 +90,7 @@
         if(name==='AnemoiaLab' && flag('ACCIDENT')){S.hide('RIVAL');S.hide('OAK');}
         if(name==='AnemoiaLab'&&flag('CROSSED'))set('HINGE');
         if(name==='AnemoiaHome' && flag('STARTER')&&!flag('EMPTY_HOME'))return(function*(){set('EMPTY_HOME');yield* S.say('The kettle is cold. The chair is empty.\fMother is gone. The house feels as if nobody has ever lived here.\fSomething pale passes the window, moving north.');})();
-        if(name==='AnemoiaHome'&&!flag('AWAKE'))return(function*(){set('AWAKE');yield* S.say('ANEMOIA. A morning like any other.\fMother says Oak is expecting you and '+G.state.rival+' at the lab today.\fMove with arrows or the D-pad. A talks and reads. START opens your bag and saves. SELECT shows your next objective.');})();
+        if(name==='AnemoiaHome'&&!flag('AWAKE'))return(function*(){set('AWAKE');yield* S.say('PALLET TOWN. A morning like any other.\fMother says Oak is expecting you and '+G.state.rival+' at the lab today.\fMove with arrows or the D-pad. A talks and reads. START opens your bag and saves. SELECT shows your next objective.');})();
         return null;
       },
       step(x,y){

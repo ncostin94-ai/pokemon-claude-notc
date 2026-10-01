@@ -64,4 +64,4 @@ read(6,2);assert(G.state.party.every(m=>m.hp===m.maxhp));
 // All authored maps render, all exits are reachable from their destination spawns.
 for(const [name,d]of Object.entries(G.MAPDATA.maps)){if(!d.realm)continue;const m=G.maps.getMap(name);G.mapRender.get(m);for(const e of d.exits||[]){const dest=G.maps.getMap(e.to);assert(dest.passable(e.tx,e.ty),`blocked spawn ${e.to}`);}}
 H.shot(G,'/tmp/nocturne-center.png');
-console.log('PASS: full opening, gates, canonical starter, reversible inverse lab, real Glim capture, recovery terminal, save/load, 16 map renders.');
+console.log('PASS: full opening, gates, canonical starter, reversible inverse lab, real Glim capture, recovery terminal, save/load, all authored map renders.');

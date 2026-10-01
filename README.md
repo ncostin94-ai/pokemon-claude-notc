@@ -1,10 +1,14 @@
+# Nocturne chapter two
+
+Pallet Town is the waking starter town; Anemoia is its shadow counterpart. After catching Glim, continue east through the encounter-free Path of Grief into Desiderium. Explore the unattended town, its empty gym and Oak’s photograph, then visit Stillwood to catch and train companions. Fourteen custom species now appear across East Path and Stillwood. [Chapter guide and encounter table](NOCTURNE_CHAPTER_TWO.md). Existing Nocturne saves work; download and extract the new version, then open its index.html.
+
 # Nocturne roster update
 
 The custom regional roster now contains 150 species across 58 evolution families. Read [the complete design guide](NOCTURNE_ROSTER.md). Prototype sprites, existing engine moves and five-stat battle data are implemented; future habitats and encounters remain proposals. The canonical starter expressions sit outside the regional roster.
 
 # Pokémon Nocturne — playable opening
 
-The Nocturne campaign begins in Anemoia and crosses into its unattended shadow world. See [NOCTURNE_FOUNDATION.md](NOCTURNE_FOUNDATION.md) for controls, the opening route, testing, and current limitations.
+The Nocturne campaign begins in Pallet Town and crosses into its unattended shadow counterpart, Anemoia. See [NOCTURNE_FOUNDATION.md](NOCTURNE_FOUNDATION.md) for controls, the opening route, testing, and current limitations.
 
 Run `python3 -m http.server 8000` from this folder, then open `http://localhost:8000`. No install or build is required.
 
