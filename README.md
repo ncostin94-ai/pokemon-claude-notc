@@ -1,3 +1,7 @@
+# Nocturne roster update
+
+The custom regional roster now contains 150 species across 58 evolution families. Read [the complete design guide](NOCTURNE_ROSTER.md). Prototype sprites, existing engine moves and five-stat battle data are implemented; future habitats and encounters remain proposals. The canonical starter expressions sit outside the regional roster.
+
 # Pokémon Nocturne — playable opening
 
 The Nocturne campaign begins in Anemoia and crosses into its unattended shadow world. See [NOCTURNE_FOUNDATION.md](NOCTURNE_FOUNDATION.md) for controls, the opening route, testing, and current limitations.
